@@ -7,7 +7,7 @@ headers = {"User-Agent": "Mozilla/5.0"}
 advertisement_keywords = ["쿠팡 파트너스", "수수료", "협찬", "광고비"]
 
 def getdata(url:str):
-  response = requests.get(url, headers=headers)
+  response = requests.get(f"https://mypetlife.co.kr/{url}", headers=headers)
   soup = BeautifulSoup(response.text, "html.parser")
   page_content = soup.select_one(".entry-content.entry.clearfix")
 
@@ -28,5 +28,3 @@ def getdata(url:str):
     raise HTTPException(status_code=400, detail="❌ 본문을 찾을 수 없습니다.")
   
   return text
-
-getdata("https://mypetlife.co.kr/150899/")
